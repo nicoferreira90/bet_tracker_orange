@@ -8,11 +8,11 @@
     </p>
 
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary m-4" type="button">Log In</button>
+        <a href="{% url "login" %}" class="btn btn-primary mx-4 mb-4">Log In</a>
         <p class="lead text-center">
             Don't have an account yet?
         </p>
-        <button class="btn btn-success mx-4 mb-4" type="button">Sign Up</button>
+        <a href="{% url "signup" %}" class="btn btn-success mx-4 mb-4">Sign Up</a>
 
         <div class="text-center mt-3">
             <button type="button" class="btn btn-link px-0">About this app</button>
