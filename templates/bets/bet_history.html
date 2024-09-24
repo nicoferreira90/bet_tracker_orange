@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-grid gap-2 col-6 mx-auto mb-4">
+    <a class="btn btn-primary" href="{% url "new_bet" %}" role="button">Add a New Bet</a>
+</div>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Site</th>
+        <th scope="col">Game Date</th>
+        <th scope="col">Pick</th>
+        <th scope="col">Stake</th>
+        <th scope="col">Odds</th>
+        <th scope="col">Bet Result</th>
+        <th scope="col">Payout</th>
+        <th scope="col" class="col-sm-2 text-center text-nowrap">Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for bet in bet_list %}
+        {% if bet.result == "Win" %}
+            <tr class="table-success">
+                <td>{{ bet.site }}</td>
+                <td>{{ bet.game_time }}</td>
+                <td>{{ bet.pick }}</td>
+                <td>{{ bet.stake }}</td>
+                <td>{{ bet.odds }}</td>
+                <td>{{ bet.result }}</td>
+                <td>{{ bet.payout }}</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                </td>
+
+            </tr>
+
+        {% elif bet.result == "Lose" %}
+            <tr class="table-danger">
+                <td>{{ bet.site }}</td>
+                <td>{{ bet.game_time }}</td>
+                <td>{{ bet.pick }}</td>
+                <td>{{ bet.stake }}</td>
+                <td>{{ bet.odds }}</td>
+                <td>{{ bet.result }}</td>
+                <td>{{ bet.payout }}</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                </td>
+            </tr>
+        {% elif bet.result == "Pending" %}
+            <tr class="table-warning">
+                <td>{{ bet.site }}</td>
+                <td>{{ bet.game_time }}</td>
+                <td>{{ bet.pick }}</td>
+                <td>{{ bet.stake }}</td>
+                <td>{{ bet.odds }}</td>
+                <td>{{ bet.result }}</td>
+                <td>{{ bet.payout }}</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ bet.site }}</td>
+                <td>{{ bet.game_time }}</td>
+                <td>{{ bet.pick }}</td>
+                <td>{{ bet.stake }}</td>
+                <td>{{ bet.odds }}</td>
+                <td>{{ bet.result }}</td>
+                <td>{{ bet.payout }}</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+
+    </tbody>
+
+  </table>
+
+{% endblock content %}
+

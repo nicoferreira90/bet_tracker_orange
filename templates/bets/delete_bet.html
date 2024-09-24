@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Delete Bet</h1>
+<form action="" method="post">{% csrf_token %}
+    <h4>Are you sure you want to delete "{{ bet.pick }}"?</h4>
+    <input class="btn btn-danger" type="submit" value="Delete">
+</form>
+{% endblock content %}
