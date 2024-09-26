@@ -9,6 +9,10 @@ class BetHistoryView(ListView):
     model = Bet
     template_name = "bets/bet_history.html"
 
+    def get_queryset(self):
+        """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
+        return Bet.objects.filter(bet_owner=self.request.user)
+
 class NewBetView(CreateView):
     model = Bet
     form_class = BetForm
