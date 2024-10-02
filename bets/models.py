@@ -3,6 +3,15 @@ from django.conf import settings
 from django.urls import reverse
 from .analytics import bet_payout
 
+RESULT_CHOICES = [
+
+        ('Win', "Win"),
+        ('Lose', 'Lose'),
+        ('Push', 'Push'),
+        ('Pending', 'Pending'),
+    
+]
+
 class Bet(models.Model):
     """Model a single bet in the database. These are standard bets, not parlays."""
     bet_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
@@ -12,7 +21,7 @@ class Bet(models.Model):
     odds = models.DecimalField(max_digits=12, decimal_places=2)
     date_added = models.DateTimeField(auto_now_add=True)
     game_time = models.DateField()
-    result = models.CharField(max_length=10)
+    result = models.CharField(max_length=25, choices=RESULT_CHOICES)
 
 
     # In Django (and Python more generally), the @property decorator is a built-in feature that allows you to define methods in a class that can be accessed like attributes.
