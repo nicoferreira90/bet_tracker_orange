@@ -32,7 +32,7 @@
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li>
-                        <a class="dropdown-item" href="#">Change password</a>
+                        <a class="dropdown-item" href="{% url "password_change" %}">Change password</a>
                     </li>
                     <li>
                         <form action="{% url 'logout' %}" method="post">
