@@ -15,12 +15,12 @@ RESULT_CHOICES = [
 class Bet(models.Model):
     """Model a single bet in the database. These are standard bets, not parlays."""
     bet_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-    site = models.CharField(max_length=25)
+    site = models.CharField(max_length=25, blank=True, null=True)
     pick = models.CharField(max_length=50)
     stake = models.DecimalField(max_digits=12, decimal_places=2)
     odds = models.DecimalField(max_digits=12, decimal_places=2)
     date_added = models.DateTimeField(auto_now_add=True)
-    game_time = models.DateField()
+    event_date = models.DateField(blank=True, null=True)
     result = models.CharField(max_length=25, choices=RESULT_CHOICES)
 
 
