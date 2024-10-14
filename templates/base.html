@@ -14,11 +14,11 @@
     <body>
 
         <!-- As a heading -->
-        <nav class="navbar navbar-light" style="background-color: #FFF; border: 1px solid #ccc;">
+        <nav class="navbar navbar-light sticky-top" style="background-color: #FFF; border: 1px solid #ccc;">
             <div class="container-fluid" style="width: 95%;">
                 <span class="navbar-brand mb-0 h1">BetView</span>
-                <span class="navbar-brand mb-0 h1">Betting History</span>
-                <span class="navbar-brand mb-0 h1">Analytics</span>
+                <span class="navbar-brand mb-0 h1"><a href={% url "bet_history" %}>Betting History</a></span>
+                <span class="navbar-brand mb-0 h1"><a href="#">Analytics</a></span>
                 <span class="navbar-brand mb-0 h1">Graphs</span>
                 
 
@@ -52,7 +52,7 @@
                 <div class="text-end">
                 <a href="{% url "login" %}" class="btn btn-primary me-2">
                 Log In</a>
-                <a href="{% url "signup" %}" class="btn btn-success">Sign Up</a>
+                <a href="{% url "signup" %}" class="btn btn-success active">Sign Up</a>
                 </div>
                 {% endif %}
                 </span>

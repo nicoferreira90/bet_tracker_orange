@@ -14,6 +14,10 @@ RESULT_CHOICES = [
 
 class Bet(models.Model):
     """Model a single bet in the database. These are standard bets, not parlays."""
+
+    class Meta:
+       ordering = ['-date_added']
+
     bet_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     site = models.CharField(max_length=25, blank=True, null=True)
     pick = models.CharField(max_length=50)
