@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 light-grey card">
+            <!-- This is the light grey container -->
+            <h4 class="mt-2">Custom Filters</h4>
+            <p>Customize your data set here.</p>
+
+            <form id="filterForm">
+                <div class="mb-3">
+                    <label for="filterCategory" class="form-label">Category</label>
+                    <select class="form-select" id="filterCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="category1">Category 1</option>
+                        <option value="category2">Category 2</option>
+                        <option value="category3">Category 3</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="filterDate" class="form-label">Date Range</label>
+                    <input type="date" class="form-control" id="filterDateStart" required>
+                    <input type="date" class="form-control mt-2" id="filterDateEnd" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg m-2">FILTER</button>
+            </form>
+
+        </div>
+        <div class="col-10 card">
+            <!-- This is the blank container -->
+            <h4 class="mt-2">Results</h4>
+            <div class="alert alert-info" role="alert">
+                Select your data set and click 'FILTER' to generate a report.
+              </div>
+              
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
