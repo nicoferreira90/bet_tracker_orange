@@ -1,4 +1,6 @@
 
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -80,9 +82,7 @@
         <div class="col-10 card" style="border-radius: 0;">
             <!-- This is the blank container -->
             <h4 class="mt-2">Results</h4>
-            <div class="alert alert-info" role="alert">
-                Select your data set and click 'FILTER' to generate a report.
-            </div>
+            <div>{{graph|safe}}</div>
               
         </div>
     </div>
