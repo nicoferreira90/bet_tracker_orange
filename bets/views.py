@@ -9,10 +9,11 @@ class BetHistoryView(LoginRequiredMixin, ListView):
     model = Bet
     template_name = "bets/bet_history.html"
     login_url = "/users/login/"
+    paginate_by = 20
 
     def get_queryset(self):
         """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
-        return Bet.objects.filter(bet_owner=self.request.user)
+        return Bet.objects.filter(bet_owner=self.request.user).order_by('-date_added')
 
 class NewBetView(LoginRequiredMixin, CreateView):
     model = Bet
