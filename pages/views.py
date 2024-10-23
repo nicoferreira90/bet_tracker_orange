@@ -9,3 +9,6 @@ class HomePageView(TemplateView):
             # Redirect or render a different template if logged in
             return redirect('bets/history/')  
         return super().dispatch(request, *args, **kwargs)
+    
+class AboutPageView(TemplateView):
+    template_name = "about_page.html"

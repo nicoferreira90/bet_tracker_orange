@@ -71,7 +71,7 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         if filter_result and filter_result != 'category-all':
             bet_set = bet_set.filter(result=filter_result)
         
-        print("Filtered bets:", bet_set)  # Debugging line to show the queryset
+        #print("Filtered bets:", bet_set)  # Debugging line to show the queryset
         return bet_set
     
 
