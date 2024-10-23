@@ -10,23 +10,24 @@
             <h4 class="mt-2">Custom Filters</h4>
             <p>Customize your data set here.</p>
 
-            <form id="filterForm">
-                <div class="mb-3">
+            <form id="filterForm" method="POST" action="{% url 'analytics_results' %}">
+                {% csrf_token %}
+                {% comment %} <div class="mb-3">
                     <label for="result-filter" class="form-label">Filter by Site</label>
                     <select class="form-select" id="result-filter" required>
                         <option value="category-all">All Sites</option>
                         <option value="category1">book1</option>
                         <option value="category2">book2</option>
                     </select>
-                </div>
+                </div> {% endcomment %}
                 <div class="mb-3">
                     <label for="result-filter" class="form-label">Filter by Bet Result</label>
-                    <select class="form-select" id="result-filter" required>
+                    <select class="form-select" name="result-filter" id="result-filter" required>
                         <option value="category-all">All Results</option>
-                        <option value="category1">Win</option>
-                        <option value="category2">Lose</option>
-                        <option value="category3">Push</option>
-                        <option value="category4">Pending</option>
+                        <option value="Win">Win</option>
+                        <option value="Lose">Lose</option>
+                        <option value="Push">Push</option>
+                        <option value="Pending">Pending</option>
                     </select>
                 </div>
                 <div class="mb-3">
