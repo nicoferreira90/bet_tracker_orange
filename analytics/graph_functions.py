@@ -12,5 +12,9 @@ def graph_results(result_array):
             "y": "Result (in $)"      # If the y-axis represents some measurement
         })
     
+    fig.add_shape( # add a horizontal "target" line
+    type="line", line_color="black", line_width=3, opacity=0.25,
+    x0=0, x1=len(result_array), xref="x", y0=0, y1=0, yref="y")
+    
     graph_html = pyo.plot(fig, include_plotlyjs=False, output_type='div')
     return graph_html

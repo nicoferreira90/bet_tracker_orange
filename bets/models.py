@@ -22,7 +22,7 @@ class Bet(models.Model):
     site = models.CharField(max_length=25, blank=True, null=True)
     pick = models.CharField(max_length=50)
     stake = models.DecimalField(max_digits=12, decimal_places=2)
-    odds = models.DecimalField(max_digits=12, decimal_places=2)
+    odds = models.DecimalField(max_digits=12, decimal_places=3)
     date_added = models.DateTimeField(auto_now_add=True)
     event_date = models.DateField(blank=True, null=True)
     result = models.CharField(max_length=25, choices=RESULT_CHOICES)
