@@ -25,7 +25,6 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         # Process form data here
         filter_result = request.POST.get('result-filter')  # Retrieve the filter directly
         user_bets = self.get_filtered_bet_list(filter_result=filter_result)  # Pass the filter value
-        print("User bets:", user_bets)  # Check the result
 
         context = self.get_context_data(**kwargs)  # Get existing context
 
@@ -54,8 +53,11 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         running_result_list = running_result(user_bets)
         context["net_result"] = running_result_list[-1]
 
-        roi = running_result_list[-1]/total_amount_wagered['total']
-        context["roi"] = roi*100
+        if total_amount_wagered['total'] != 0:
+            roi = None
+        else:
+            roi = running_result_list[-1]/total_amount_wagered['total']
+            context["roi"] = roi*100
 
         context['graph'] = self.get_user_result_graph(filter_result)  # Pass filter if needed
 
@@ -71,7 +73,6 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         if filter_result and filter_result != 'category-all':
             bet_set = bet_set.filter(result=filter_result)
         
-        #print("Filtered bets:", bet_set)  # Debugging line to show the queryset
         return bet_set
     
 

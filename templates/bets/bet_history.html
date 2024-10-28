@@ -5,11 +5,11 @@
 {% load static %}
 
 <div class="d-grid gap-2 col-6 mx-auto mb-4">
-    <a class="btn btn-success active" href="{% url "new_bet" %}" role="button">Add a New Bet</a>
+    <a class="btn btn-success active border border-dark" href="{% url "new_bet" %}" role="button">Add a New Bet</a>
 </div>
 
-<table class="table table-hover table-bordered">
-    <thead class="table-dark">
+<table class="table table-hover border-dark table-bordered" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+    <thead class="table-dark border-dark table-bordere">
       <tr>
         <th scope="col">Site</th>
         <th scope="col">Date added</th>
@@ -27,7 +27,7 @@
 
         {% for bet in bet_list %}
         {% if bet.result == "Win" %}
-            <tr class="table-success">
+            <tr class="table-success border-dark table-bordered">
                 <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
                 <td>{{ bet.event_date }}</td>
@@ -37,16 +37,16 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm" href="" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                     
                 </td>
 
             </tr>
 
         {% elif bet.result == "Lose" %}
-            <tr class="table-danger">
+            <tr class="table-danger border-dark table-bordere">
                 <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
                 <td>{{ bet.event_date }}</td>
@@ -56,13 +56,13 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm" href="" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>
             </tr>
         {% elif bet.result == "Pending" %}
-            <tr class="table-warning">
+            <tr class="table-warning border-dark table-bordere">
                 <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
                 <td>{{ bet.event_date }}</td>
@@ -72,13 +72,13 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm" href="" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
+            <tr class="border-dark table-bordere">
                 <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
                 <td>{{ bet.event_date }}</td>
@@ -88,9 +88,9 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm" href="" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a class="btn btn-danger btn-sm" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
+                    <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>
             </tr>
         {% endif %}

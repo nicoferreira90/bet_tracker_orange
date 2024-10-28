@@ -62,7 +62,7 @@
                 </div>
                 
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-lg m-2">FILTER</button>
+                    <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark">FILTER</button>
                 </div>
                 
                 <script>
@@ -90,10 +90,15 @@
         </div>
         <div class="col-10 card" style="border-radius: 0;">
             <h4 class="mt-2">Results</h4>
+            {% if user_bets.count == 0 %}
+                <div class="alert alert-info" role="alert">
+                    There is not data to analyze. Register some bets first.
+                </div>
+            {% else %}
             <div>{{graph|safe}}</div>
             <div class="row mt-4" style="width: 80%; margin: 0 auto;">
                 <div class="col-md-6">
-                    <table class="table table-bordered border-dark">
+                    <table class="table table-bordered border-dark table-hover" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
 
                         <tbody>
                           <tr>
@@ -128,9 +133,9 @@
                       </table>
                 </div>
                 <div class="col-md-6">
-                    <table class="table table-bordered border-dark" >
+                    <table class="table table-bordered border-dark table-hover" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);" >
 
-                        <tbody>
+                        <tbody >
                             <tr>
                                 <th scope="row">Bet Win % [(Bets Won)/(Bets Won + Bets Lost)]</th>
                                 <td>{{ bet_win_percentage|floatformat:2 }}%</td>
@@ -163,6 +168,7 @@
                 </div>
               
         </div>
+        {% endif %}
     </div>
 </div>
 
