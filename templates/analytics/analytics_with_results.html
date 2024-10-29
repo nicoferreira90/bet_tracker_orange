@@ -5,6 +5,27 @@
 
 {% block content %}
 
+<script>
+    function toggleDateInputs() {
+        const customDatesSelected = document.getElementById('customDates').checked;
+        const dateInputs = document.getElementById('dateRangeInputs');
+        const dateStart = document.getElementById('filterDateStart');
+        const dateEnd = document.getElementById('filterDateEnd');
+
+        if (customDatesSelected) {
+            dateStart.disabled = false;
+            dateEnd.disabled = false;
+            dateStart.required = true;
+            dateEnd.required = true;
+        } else {
+            dateStart.disabled = true;
+            dateEnd.disabled = true;
+            dateStart.required = false;
+            dateEnd.required = false;
+        }
+    }
+</script>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-2 light-grey card" style="border-radius: 0; background-color: rgb(232, 232, 232)">
@@ -14,14 +35,7 @@
 
             <form id="filterForm" method="POST" action="{% url 'analytics_results' %}">
                 {% csrf_token %}
-                {% comment %} <div class="mb-3">
-                    <label for="result-filter" class="form-label">Filter by Site</label>
-                    <select class="form-select" id="result-filter" required>
-                        <option value="category-all">All Sites</option>
-                        <option value="category1">book1</option>
-                        <option value="category2">book2</option>
-                    </select>
-                </div> {% endcomment %}
+
                 <div class="mb-3">
                     <label for="result-filter" class="form-label">Filter by Bet Result</label>
                     <select class="form-select" name="result-filter" id="result-filter" required>
@@ -57,34 +71,15 @@
                 
                 <div class="mb-3" id="dateRangeInputs">
                     <label for="filterDate" class="form-label">Date Range</label>
-                    <input type="date" class="form-control" id="filterDateStart" required disabled>
-                    <input type="date" class="form-control mt-2" id="filterDateEnd" required disabled>
+                    <input type="date" class="form-control" id="filterDateStart" name="filterDateStart" required disabled>
+                    <input type="date" class="form-control mt-2" id="filterDateEnd" name="filterDateEnd" required disabled>
                 </div>
                 
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark">FILTER</button>
                 </div>
                 
-                <script>
-                    function toggleDateInputs() {
-                        const customDatesSelected = document.getElementById('customDates').checked;
-                        const dateInputs = document.getElementById('dateRangeInputs');
-                        const dateStart = document.getElementById('filterDateStart');
-                        const dateEnd = document.getElementById('filterDateEnd');
-                
-                        if (customDatesSelected) {
-                            dateStart.disabled = false;
-                            dateEnd.disabled = false;
-                            dateStart.required = true;
-                            dateEnd.required = true;
-                        } else {
-                            dateStart.disabled = true;
-                            dateEnd.disabled = true;
-                            dateStart.required = false;
-                            dateEnd.required = false;
-                        }
-                    }
-                </script>
+
             </form>
 
         </div>

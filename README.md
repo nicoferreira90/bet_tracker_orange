@@ -1,8 +1,12 @@
 
+29/10: I estimate I am about 90% complete.
+
+TODO: Tag functionality and filtering, and the project is done.
+
+------
+
 
 23/10: I estimate I am about 80% complete.
-
-TODO in order of priority: 1. complete results filter functionality, with queries in the view file. 2. Implement tags.
 
 -------
 
