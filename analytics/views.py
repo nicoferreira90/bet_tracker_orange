@@ -68,6 +68,8 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         total_amount_wagered = user_bets.aggregate(total=Sum("stake"))
         context["total_amount_wagered"] = total_amount_wagered['total']
 
+        context["total_amount_wagered"] = total_amount_wagered['total']
+
         running_result_list = running_result(user_bets)
         context["net_result"] = running_result_list[-1]
 

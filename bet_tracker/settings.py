@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bets',
     'pages',
     'analytics',
+    'tags',
 ]
 
 MIDDLEWARE = [

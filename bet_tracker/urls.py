@@ -9,4 +9,5 @@ urlpatterns = [
     path('bets/', include("bets.urls")),
     path('', include("pages.urls")),
     path('analytics/', include("analytics.urls")),
+    path('tags/', include("tags.urls")),
 ]

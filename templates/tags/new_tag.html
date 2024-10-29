@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+<h1>New Custom Tag</h1>
+
+{% block content %}
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <p>Select one or more bets to label with this Tag. You should register your first bet before creating tags.</p>
+    <button class="btn btn-warning active ml-2 border border-dark" type="submit">Add Tag</button>
+</form>
+
+
+{% endblock content %}

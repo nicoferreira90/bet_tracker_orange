@@ -73,10 +73,18 @@
                     <input type="date" class="form-control" id="filterDateStart" name="filterDateStart" required disabled>
                     <input type="date" class="form-control mt-2" id="filterDateEnd" name="filterDateEnd" required disabled>
                 </div>
-                
+                {% if user_bets %}
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark">FILTER</button>
+                    
                 </div>
+                {% else %}
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark disabled">FILTER</button>
+                    
+                </div>
+                {% endif %}
+                <p>(Requires at least one bet.)</p>
                 
 
             </form>

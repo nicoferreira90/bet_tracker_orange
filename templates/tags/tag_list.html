@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p class="lead" style="font-weight: 400">Custom Tags are entirely optional labels that can be attached to one or more bets. 
+    They provide another layer for filtering, and thus allow for more specific analysis.</p>
+
+<p class="lead" style="font-weight: 400">You can create, edit and delete your tags here, and then assign them to, or remove them from, 
+    bets in the Bet History table by clicking on each bet's 'Manage Tags' button.</p>
+
+<p>Some advice: While it's a good practice to consistently label your bets, running analyses through multiple filters on a sample that isn't sufficiently large can lead to
+     misleading statistics. For example, if you have a total of 200 NBA spread bets, the resulting analytics should be informative and useful. 
+     However, if you filter the data only for games where the Indiana Pacers were home dogs, the sample size may become too small to provide reliable insights.</p>
+
+<hr>
+
+<a class="btn btn-warning border border-dark" style="margin: 20px;" href="{% url "new_tag" %}" role="button">Create a new Tag</a>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Label</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+  
+{% for tag  in tag_list %}
+<tr>
+    <td>{{tag.label}}</td>
+    <td>{{tag.description}}</td>
+    <td>
+      <a class="btn btn-primary btn-sm border border-dark" href="" role="button">Update Tag</a>
+      <a class="btn btn-danger btn-sm border border-dark" href="" role="button">Delete Tag</a>
+    </td>
+
+{% endfor %}
+
+
+{% endblock content %}
