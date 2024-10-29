@@ -35,7 +35,7 @@
                 {% csrf_token %}
                 
                 <div class="mb-3">
-                    <label for="result-filter" class="form-label">Filter by Bet Result</label>
+                    <label for="result-filter" class="form-label"><u>Filter by Bet Result</u></label>
                     <select class="form-select" name="result-filter" id="result-filter" required>
                         <option value="category-all">All Results</option>
                         <option value="Win">Win</option>
@@ -45,7 +45,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="tag-filter" class="form-label">Filter by Custom Tags</label>
+                    <label for="tag-filter" class="form-label"><u>Filter by Custom Tags</u></label>
+                    <p><i>(Click <a href="#">here</a> for some pointers on how to filter by one or more tags)</i></p>
                     <select class="form-select" id="tag-filter" required>
                         <option value="category-all">All Tags</option>
                         <option value="category1">tag 1</option>
@@ -55,7 +56,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Select Date Option</label>
+                    <label class="form-label"><u>Select Date Option</u></label>
                     <p><i>(this will filter by the "Date added" attribute)</i></p>
                     <div>
                         <input type="radio" id="allDates" name="dateOption" value="all" checked onclick="toggleDateInputs()">

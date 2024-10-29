@@ -41,3 +41,7 @@ class Bet(models.Model):
         return self.pick
     def get_absolute_url(self):
         return reverse("article_detail", kwargs={"pk": self.pk})
+    
+
+class Tag(models.Model):
+    """Model a single tag, which is a label associated with a Bet."""
