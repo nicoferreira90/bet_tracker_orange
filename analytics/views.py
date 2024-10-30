@@ -24,6 +24,9 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
 
     def post(self, request, *args, **kwargs):
         # Process form data here
+
+        filter_type = request.POST.get('type-filter') # Retrieve the type filter directly
+
         filter_result = request.POST.get('result-filter')  # Retrieve the result filter directly
 
         filter_date_option = request.POST.get('dateOption') # Retrieve the date filter directly
@@ -39,7 +42,8 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
             filter_date_start = None
             filter_date_end = None
 
-        user_bets = self.get_filtered_bet_list(filter_result=filter_result,
+        user_bets = self.get_filtered_bet_list(filter_type=filter_type,
+                                               filter_result=filter_result,
                                                filter_date_option=filter_date_option, 
                                                filter_date_start=filter_date_start, 
                                                filter_date_end = filter_date_end) 
@@ -86,14 +90,18 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         return self.render_to_response(context)
     
 
-    def get_filtered_bet_list(self, filter_result, filter_date_option=None, filter_date_start=None, filter_date_end=None):
+    def get_filtered_bet_list(self, filter_type, filter_result, filter_date_option=None, filter_date_start=None, filter_date_end=None):
         """Return only bets made by the user, and also that meet the filter criteria."""
         bet_set = Bet.objects.filter(bet_owner=self.request.user)
 
+        print("Received filter type:", filter_type)  # Debugging line
         print("Received filter result:", filter_result)  # Debugging line
         print("Received filter date_range:", filter_date_option)
         print("Received start date:", filter_date_start)
         print("Received end date:", filter_date_end)
+
+        if filter_type != 'category-all':
+            bet_set = bet_set.filter(bet_type=filter_type)
 
         if filter_result != 'category-all':
             bet_set = bet_set.filter(result=filter_result)
