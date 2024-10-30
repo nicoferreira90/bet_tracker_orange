@@ -11,9 +11,9 @@
 <table class="table table-hover border-dark table-bordered" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
     <thead class="table-dark border-dark table-bordere">
       <tr>
-        <th scope="col">Site</th>
         <th scope="col">Date added</th>
-        <th scope="col">Event Date</th>
+        <th scope="col">Site</th>        
+        <th scope="col">Bet Type</th>
         <th scope="col">Pick</th>
         <th scope="col">Stake</th>
         <th scope="col">Odds</th>
@@ -28,11 +28,11 @@
         {% for bet in bet_list %}
         {% if bet.result == "Win" %}
             <tr class="table-success border-dark table-bordered">
-                <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
-                <td>{{ bet.event_date }}</td>
-                <td>{{ bet.pick }}</td>
-                <td>{{ bet.stake }}</td>
+                <td>{{ bet.site|slice:"0:25" }}</td>
+                <td>{{ bet.bet_type }}</td>
+                <td>{{ bet.pick|slice:"0:25" }}</td>
+                <td>{{ bet.stake|slice:"0:25" }}</td>
                 <td>{{ bet.odds }}</td>
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
@@ -47,11 +47,11 @@
 
         {% elif bet.result == "Lose" %}
             <tr class="table-danger border-dark table-bordere">
-                <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
-                <td>{{ bet.event_date }}</td>
-                <td>{{ bet.pick }}</td>
-                <td>{{ bet.stake }}</td>
+                <td>{{ bet.site|slice:"0:25" }}</td>
+                <td>{{ bet.bet_type }}</td>
+                <td>{{ bet.pick|slice:"0:25" }}</td>
+                <td>{{ bet.stake|slice:"0:25" }}</td>
                 <td>{{ bet.odds }}</td>
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
@@ -63,11 +63,11 @@
             </tr>
         {% elif bet.result == "Pending" %}
             <tr class="table-warning border-dark table-bordere">
-                <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
-                <td>{{ bet.event_date }}</td>
-                <td>{{ bet.pick }}</td>
-                <td>{{ bet.stake }}</td>
+                <td>{{ bet.site|slice:"0:25" }}</td>
+                <td>{{ bet.bet_type }}</td>
+                <td>{{ bet.pick|slice:"0:25" }}</td>
+                <td>{{ bet.stake|slice:"0:25" }}</td>
                 <td>{{ bet.odds }}</td>
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
@@ -79,11 +79,11 @@
             </tr>
         {% else %}
             <tr class="border-dark table-bordere">
-                <td>{{ bet.site }}</td>
                 <td>{{ bet.date_added }}</td>
-                <td>{{ bet.event_date }}</td>
-                <td>{{ bet.pick }}</td>
-                <td>{{ bet.stake }}</td>
+                <td>{{ bet.site|slice:"0:25" }}</td>
+                <td>{{ bet.bet_type }}</td>
+                <td>{{ bet.pick|slice:"0:25" }}</td>
+                <td>{{ bet.stake|slice:"0:25" }}</td>
                 <td>{{ bet.odds }}</td>
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>

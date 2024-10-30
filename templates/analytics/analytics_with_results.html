@@ -37,6 +37,20 @@
                 {% csrf_token %}
 
                 <div class="mb-3">
+                    <label for="type-filter" class="form-label"><u>Filter by Bet Type</u></label>
+                    <select class="form-select" name="type-filter" id="type-filter" required>
+                        <option value="category-all">All Types</option>
+                        <option value="Spread">Spread</option>
+                        <option value="Moneyline">Moneyline</option>
+                        <option value="Futures">Futures</option>
+                        <option value="Teaser">Teaser</option>
+                        <option value="Parlay">Parlay</option>
+                        <option value="Total">Total</option>
+                        <option value="Props">Props</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label for="result-filter" class="form-label"><u>Filter by Bet Result</u></label>
                     <select class="form-select" name="result-filter" id="result-filter" required>
                         <option value="category-all">All Results</option>
@@ -47,15 +61,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="tag-filter" class="form-label"><u>Filter by Custom Tags</u></label>
-                    <p><i>(Click <a href="#">here</a> for some pointers on how to filter by one or more tags)</i></p>
-                    <select class="form-select" id="tag-filter" required>
-                        <option value="category-all">All Tags</option>
-                        <option value="category1">tag 1</option>
-                        <option value="category2">tag 2</option>
-                        <option value="category3">tag 3</option>
-                        <option value="category4">tag 4</option>
-                    </select>
+                    <label for="tag-filter" class="form-label"><u>Optional: Filter by Custom Tags</u></label>
+                    <p><i>Input only one label (case-sensitive)</i></p>
+                    <input type="text" id="tag-filter" name="tag-filter" placeholder="your tag here">
                 </div>
                 <div class="mb-3">
                     <label class="form-label"><u>Select Date Option</u></label>
@@ -75,19 +83,11 @@
                     <input type="date" class="form-control" id="filterDateStart" name="filterDateStart" required disabled>
                     <input type="date" class="form-control mt-2" id="filterDateEnd" name="filterDateEnd" required disabled>
                 </div>
-                
-                {% if user_bets %}
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark">FILTER</button>
                     
                 </div>
-                {% else %}
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-lg m-2 border border-dark disabled">FILTER</button>
-                    
-                </div>
-                {% endif %}
-                <p>(Requires at least one bet.)</p>
+                
                 
                 
 

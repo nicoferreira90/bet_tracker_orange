@@ -7,9 +7,9 @@ from users.models import CustomUser
 class Tag(models.Model):
     """Model a single Tag, which is a label associated with one or more bets."""
 
-    associated_bet = models.ManyToManyField(Bet)
+    associated_bets = models.ManyToManyField(Bet, blank=True)
     label = models.CharField(max_length=25)
-    description = models.CharField(max_length=50)
+    description = models.CharField(max_length=50, blank=True)
     tag_owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):

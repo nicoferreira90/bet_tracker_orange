@@ -73,7 +73,7 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         running_result_list = running_result(user_bets)
         context["net_result"] = running_result_list[-1]
 
-        if total_amount_wagered['total'] == 0:
+        if total_amount_wagered['total'] == 0 or total_amount_wagered['total'] == None:
             roi = None
             print("roi", roi)
         else:

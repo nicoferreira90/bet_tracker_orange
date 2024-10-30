@@ -4,4 +4,4 @@ from .models import Tag
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = ['label', 'description', 'associated_bet']
+        fields = ['label', 'description', 'associated_bets']

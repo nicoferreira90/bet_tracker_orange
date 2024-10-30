@@ -52,8 +52,8 @@
             <tbody>
                 {% for tag in bet.tag_set.all %}
                 <tr>
-                    <td><p class="lead" style="font-weight: 400">{{ tag }}</p></td>
-                    <td><p class="lead" style="font-weight: 400">{{ tag.description }}</p></td>
+                    <td><p class="lead" style="font-weight: 400"></p></td>
+                    <td><p class="lead" style="font-weight: 400"></p></td>
                     <td>
                         <a class="btn btn-success border border-dark" href="" role="button">Assign Tag</a>
                     </td>
@@ -64,5 +64,7 @@
     </div>
 
 </div>
+
+<a class="btn btn-warning border border-dark" style="margin: 20px;" href="{% url "new_tag" %}" role="button">Create a new Tag</a>
 
 {% endblock content %}
