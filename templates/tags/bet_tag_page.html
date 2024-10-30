@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{bet}}</h2>
+<p class="lead" style="font-weight: 400">Added on {{bet.date_added}}</p>
+<p class="lead" style="font-weight: 400">Result: {{bet.result}}</p>
+
+<hr>
+
+<h2>Active Tags for this Bet:</h2>
+<div style="display: flex; align-items: flex-start;">
+    <div style="flex: 1; max-width: 75%;">
+        <table class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th> <!-- New header for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in bet.tag_set.all %}
+                <tr>
+                    <td><p class="lead" style="font-weight: 400">{{ tag }}</p></td>
+                    <td><p class="lead" style="font-weight: 400">{{ tag.description }}</p></td>
+                    <td>
+                        <a class="btn btn-danger border border-dark" href="" role="button">Remove Tag</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<hr>
+
+<h2>Tags not currently assigned to this Bet:</h2>
+<div style="display: flex; align-items: flex-start;">
+    <div style="flex: 1; max-width: 75%;">
+        <table class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th> <!-- New header for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in bet.tag_set.all %}
+                <tr>
+                    <td><p class="lead" style="font-weight: 400">{{ tag }}</p></td>
+                    <td><p class="lead" style="font-weight: 400">{{ tag.description }}</p></td>
+                    <td>
+                        <a class="btn btn-success border border-dark" href="" role="button">Assign Tag</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock content %}

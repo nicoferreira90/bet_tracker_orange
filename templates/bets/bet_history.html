@@ -37,7 +37,7 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
                     <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
                     <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                     
@@ -56,7 +56,7 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
                     <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
                     <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>
@@ -72,7 +72,7 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
                     <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
                     <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>
@@ -88,7 +88,7 @@
                 <td>{{ bet.result }}</td>
                 <td>{{ bet.payout }}</td>
                 <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="" role="button">Manage Tags</a>
+                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
                     <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
                     <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_bet" bet.pk %}" role="button">Delete Bet</a>
                 </td>

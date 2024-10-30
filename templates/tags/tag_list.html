@@ -31,8 +31,8 @@
     <td>{{tag.label}}</td>
     <td>{{tag.description}}</td>
     <td>
-      <a class="btn btn-primary btn-sm border border-dark" href="" role="button">Update Tag</a>
-      <a class="btn btn-danger btn-sm border border-dark" href="" role="button">Delete Tag</a>
+      <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_tag" tag.pk %}" role="button">Update Tag</a>
+      <a class="btn btn-danger btn-sm border border-dark" href="{% url "delete_tag" tag.pk %}" role="button">Delete Tag</a>
     </td>
 
 {% endfor %}

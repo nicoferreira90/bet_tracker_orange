@@ -1,8 +1,7 @@
 
 29/10: I estimate I am about 90% complete.
 
-TODO: Tag functionality and filtering, and the project is done.
-
+TODO: Tag functionality and filtering. Also need to change the 'Event Date' field into 'Bet Type' field.
 ------
 
 
@@ -11,7 +10,6 @@ TODO: Tag functionality and filtering, and the project is done.
 -------
 
 22/10: I estimate I am about 70% complete.
-
 
 --------
 
