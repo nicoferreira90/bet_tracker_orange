@@ -22,8 +22,7 @@ class NewTagView(LoginRequiredMixin, CreateView):
         form.instance.tag_owner = self.request.user
         return super().form_valid(form)
 
-    
-    
+        
 class UpdateTagView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Tag
     form_class = TagForm
@@ -97,6 +96,11 @@ class BetNewTagView(LoginRequiredMixin, CreateView):
     template_name = "tags/new_tag.html"
     login_url = "/users/login/"
     success_url = reverse_lazy("bet_tag_page")
+
+    def get_success_url(self):
+        # Get the pk of the bet from the GET parameters
+        bet_pk = self.request.GET.get('bet_pk')
+        return reverse_lazy("bet_tag_page", kwargs={'pk': bet_pk})
 
     def form_valid(self, form):
         # Set the owner of the bet to the current user

@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView
 from bets.models import Bet
+from tags.models import Tag
 from .graph_functions import graph_results
-from .analytic_functions import running_result, get_average_odds
+from .analytic_functions import running_result
 from django.db.models import Avg, Sum
 
 
@@ -29,6 +31,8 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
 
         filter_result = request.POST.get('result-filter')  # Retrieve the result filter directly
 
+        filter_tag = request.POST.get('tag-filter')
+
         filter_date_option = request.POST.get('dateOption') # Retrieve the date filter directly
 
         if filter_date_option == 'custom': # Retrieve the custom date range from the form, only if the option 'custom' option is selected
@@ -44,6 +48,7 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
 
         user_bets = self.get_filtered_bet_list(filter_type=filter_type,
                                                filter_result=filter_result,
+                                               filter_tag=filter_tag,
                                                filter_date_option=filter_date_option, 
                                                filter_date_start=filter_date_start, 
                                                filter_date_end = filter_date_end) 
@@ -90,15 +95,17 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         return self.render_to_response(context)
     
 
-    def get_filtered_bet_list(self, filter_type, filter_result, filter_date_option=None, filter_date_start=None, filter_date_end=None):
+    def get_filtered_bet_list(self, filter_type, filter_tag, filter_result, filter_date_option=None, filter_date_start=None, filter_date_end=None):
         """Return only bets made by the user, and also that meet the filter criteria."""
         bet_set = Bet.objects.filter(bet_owner=self.request.user)
 
         print("Received filter type:", filter_type)  # Debugging line
         print("Received filter result:", filter_result)  # Debugging line
+        print("Recieved Tag to filter by:", filter_tag)
         print("Received filter date_range:", filter_date_option)
         print("Received start date:", filter_date_start)
         print("Received end date:", filter_date_end)
+
 
         if filter_type != 'category-all':
             bet_set = bet_set.filter(bet_type=filter_type)
@@ -106,7 +113,20 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         if filter_result != 'category-all':
             bet_set = bet_set.filter(result=filter_result)
             print("After filtering by result:", bet_set)
-        
+
+        if filter_tag != '':  # find a better way to deal with this... TODO
+            try:
+                tag = Tag.objects.get(label=filter_tag)
+            except Tag.DoesNotExist:
+                print("REDIRECTING!!!")
+                return redirect(reverse_lazy("analytics_page"))
+            
+            bet_set = bet_set.filter(tags__id=tag.id)
+
+            print("After filtering by tag:", bet_set)
+
+
+
         if filter_date_option == 'custom':
             bet_set = bet_set.filter(date_added__range=[filter_date_start, filter_date_end])
             print("After filtering by date range:", bet_set)

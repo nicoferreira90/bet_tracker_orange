@@ -14,8 +14,3 @@ def running_result(user_bets):
     
     #print(result_array)
     return result_array
-
-def get_average_odds(user_bets):
-    """Calculate the average odds of a set of bets."""
-    avg_odds = sum(user_bets.odds)/len(user_bets)
-    return avg_odds

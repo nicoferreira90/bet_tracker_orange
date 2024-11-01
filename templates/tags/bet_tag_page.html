@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tag in bet.tag_set.all %}
+                {% for tag in bet.tags.all %}
                 <tr>
                     <td>{{ tag }}</td>
                     <td>{{ tag.description }}</td>
@@ -46,11 +46,12 @@
     {% csrf_token %}
     <p>Select a Tag to assign to this bet from the drop-down list:</p>
     <select name="tag-select" class="form-select" aria-label="no-label" style="width: 40%;" id="tag-select" required>
+        <option value="" disabled selected>Select from your existing Tags</option>
         {% for tag in inactive_tags %}
             <option value="{{ tag }}">{{ tag }}</option>
         {% endfor %}
     </select>
     <button id="assign-tag-button" class="btn btn-success active border border-dark" type="submit">Assign Tag to this Bet</button>
-    <a class="btn btn-warning border border-dark" style="margin: 10px;" href="{% url 'bet_new_tag' %}" role="button">Create a new Tag</a>
+    <a class="btn btn-warning border border-dark" style="margin: 10px;" href="{% url 'bet_new_tag' %}?bet_pk={{ bet.pk }}" role="button">Create a new Tag</a>
 </form>
 {% endblock content %}
