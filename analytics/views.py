@@ -114,17 +114,8 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
             bet_set = bet_set.filter(result=filter_result)
             print("After filtering by result:", bet_set)
 
-        if filter_tag != '':  # find a better way to deal with this... TODO
-            try:
-                tag = Tag.objects.get(label=filter_tag)
-            except Tag.DoesNotExist:
-                print("REDIRECTING!!!")
-                return redirect(reverse_lazy("analytics_page"))
-            
-            bet_set = bet_set.filter(tags__id=tag.id)
-
-            print("After filtering by tag:", bet_set)
-
+        if filter_tag != '':
+                bet_set = bet_set.filter(tags__label=filter_tag)
 
 
         if filter_date_option == 'custom':

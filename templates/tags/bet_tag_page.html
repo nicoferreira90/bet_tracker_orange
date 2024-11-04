@@ -24,8 +24,8 @@
             <tbody>
                 {% for tag in bet.tags.all %}
                 <tr>
-                    <td>{{ tag }}</td>
-                    <td>{{ tag.description }}</td>
+                    <td><b>{{ tag }}</b></td>
+                    <td><i>{{ tag.description }}</i></td>
                     <td>
                         <form action="{% url 'bet_tag_page' pk=bet.pk %}" method="POST" style="display:inline;">
                             {% csrf_token %}
