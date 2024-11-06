@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}BetView{% endblock title %}</title>
+        <title>{% block title %}Betview{% endblock title %}</title>
         <meta name="viewport" content="width=device-width,
         initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
@@ -52,7 +52,9 @@
         <nav class="navbar navbar-light sticky-top" style="background-color: #FFF; border: 1px solid #ccc;">
             <div class="container-fluid d-flex align-items-center" style="width: 95%;">
                 <span class="navbar-brand mb-0 h1">
+                    <a href="{% url "home_page" %}" class="navbar-brand">
                     <img src="{% static 'betview-high-resolution-logo-transparent.png' %}" class="img-fluid" alt="..." style="max-height: 28px;">
+                    </a>
                 </span>
                 <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "bet_history" %}">Bet History</a></span>
                 <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "analytics_page" %}">Analytics</a></span>

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="m-4">
-    <h1 class="text-center">Welcome to BetView</h1>
+<div class="m-4 text-center">
+
+    <img src="{% static 'betview-high-resolution-logo-transparent.png' %}" class="img-fluid my-4" alt="..." style="max-height: 60px;">
     <p class="lead text-center" style="font-weight: 400">
-        A very simple, free-to-use bet tracker, with some analytics.
+        Welcome to Betview: a free-to-use bet tracker, with simple analytics.
     </p>
 
     <div class="d-grid gap-2 col-6 mx-auto">

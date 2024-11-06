@@ -29,7 +29,7 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
 
         filter_type = request.POST.get('type-filter') # Retrieve the type filter directly
 
-        filter_result = request.POST.get('result-filter')  # Retrieve the result filter directly
+        filter_site = request.POST.get('site-filter')  # Retrieve the site filter directly
 
         filter_tag = request.POST.get('tag-filter')
 
@@ -47,7 +47,7 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
             filter_date_end = None
 
         user_bets = self.get_filtered_bet_list(filter_type=filter_type,
-                                               filter_result=filter_result,
+                                               filter_site=filter_site,
                                                filter_tag=filter_tag,
                                                filter_date_option=filter_date_option, 
                                                filter_date_start=filter_date_start, 
@@ -95,12 +95,12 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         return self.render_to_response(context)
     
 
-    def get_filtered_bet_list(self, filter_type, filter_tag, filter_result, filter_date_option=None, filter_date_start=None, filter_date_end=None):
+    def get_filtered_bet_list(self, filter_type, filter_site, filter_tag, filter_date_option=None, filter_date_start=None, filter_date_end=None):
         """Return only bets made by the user, and also that meet the filter criteria."""
         bet_set = Bet.objects.filter(bet_owner=self.request.user)
 
         print("Received filter type:", filter_type)  # Debugging line
-        print("Received filter result:", filter_result)  # Debugging line
+        print("Received filter site:", filter_site)  # Debugging line
         print("Recieved Tag to filter by:", filter_tag)
         print("Received filter date_range:", filter_date_option)
         print("Received start date:", filter_date_start)
@@ -110,9 +110,9 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
         if filter_type != 'category-all':
             bet_set = bet_set.filter(bet_type=filter_type)
 
-        if filter_result != 'category-all':
-            bet_set = bet_set.filter(result=filter_result)
-            print("After filtering by result:", bet_set)
+        if filter_site != '':
+            bet_set = bet_set.filter(site=filter_site)
+            print("After filtering by site:", bet_set)
 
         if filter_tag != '':
                 bet_set = bet_set.filter(tags__label=filter_tag)
