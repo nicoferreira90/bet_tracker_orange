@@ -25,6 +25,13 @@ class NewTagView(LoginRequiredMixin, CreateView):
         # Set the owner of the bet to the current user
         form.instance.tag_owner = self.request.user
         return super().form_valid(form)
+    
+    # try this...
+    def get_form(self, *args, **kwargs):
+        # Get the form and modify the queryset for the associated_bets field
+        form = super().get_form(*args, **kwargs)
+        form.fields['associated_bets'].queryset = Bet.objects.filter(bet_owner=self.request.user)
+        return form
 
         
 class UpdateTagView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -38,6 +45,12 @@ class UpdateTagView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         """Checks if bet owner is the same as the current user."""
         obj = self.get_object()
         return obj.tag_owner == self.request.user
+    
+    def get_form(self, *args, **kwargs):
+        # Get the form and modify the queryset for the associated_bets field
+        form = super().get_form(*args, **kwargs)
+        form.fields['associated_bets'].queryset = Bet.objects.filter(bet_owner=self.request.user)
+        return form
 
 class DeleteTagView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Tag
@@ -110,3 +123,9 @@ class BetNewTagView(LoginRequiredMixin, CreateView):
         # Set the owner of the bet to the current user
         form.instance.tag_owner = self.request.user
         return super().form_valid(form)
+    
+    def get_form(self, *args, **kwargs):
+        # Get the form and modify the queryset for the associated_bets field
+        form = super().get_form(*args, **kwargs)
+        form.fields['associated_bets'].queryset = Bet.objects.filter(bet_owner=self.request.user)
+        return form
