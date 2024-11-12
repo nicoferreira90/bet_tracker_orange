@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     'crispy_forms',
     'crispy_bootstrap5',
+    'debug_toolbar',
 
     # my apps
     'users',
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'bet_tracker.urls'
@@ -142,3 +144,9 @@ CRISPY_TEMPLATE_PACK = "bootstrap5" # new
 
 LOGIN_REDIRECT_URL = "home_page" # new
 LOGOUT_REDIRECT_URL = "home_page" # new
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

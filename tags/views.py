@@ -10,6 +10,10 @@ class TagListView(LoginRequiredMixin, ListView):
     template_name = "tags/tag_list.html"
     login_url = "/users/login/"
 
+    def get_queryset(self):
+        """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
+        return Tag.objects.filter(tag_owner=self.request.user)
+
 class NewTagView(LoginRequiredMixin, CreateView):
     model = Tag
     form_class = TagForm
@@ -78,7 +82,7 @@ class BetTagPageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         context["bet"] = self.get_object()
         print("debug line")
         print(context["bet"])
-        context["inactive_tags"] = Tag.objects.exclude(associated_bets=context["bet"]).distinct()
+        context["inactive_tags"] = Tag.objects.filter(tag_owner=self.request.user).exclude(associated_bets=context["bet"]).distinct()
         print(context["inactive_tags"])
         context["pk"] = self.get_object().pk
         print(context["pk"])
