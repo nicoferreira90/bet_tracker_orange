@@ -1,3 +1,4 @@
 
+12/11:
 
-30/10: Should be 95% finished. Some minor tweaks left, adding logo and some screenshots on Home Page and we can deploy.
+App is finished. Need to decide if the About page will ask for donations, and write some further tests.
