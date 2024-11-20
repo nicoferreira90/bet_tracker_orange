@@ -24,23 +24,23 @@ class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
     template_name = "analytics/analytics_with_results.html"
     login_url = "/users/login/"
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         # Process form data here
 
-        filter_type = request.POST.get('type-filter') # Retrieve the type filter directly
+        filter_type = request.GET.get('type-filter') # Retrieve the type filter directly
 
-        filter_site = request.POST.get('site-filter')  # Retrieve the site filter directly
+        filter_site = request.GET.get('site-filter')  # Retrieve the site filter directly
 
-        filter_tag = request.POST.get('tag-filter')
+        filter_tag = request.GET.get('tag-filter')
 
-        filter_date_option = request.POST.get('dateOption') # Retrieve the date filter directly
+        filter_date_option = request.GET.get('dateOption') # Retrieve the date filter directly
 
         if filter_date_option == 'custom': # Retrieve the custom date range from the form, only if the option 'custom' option is selected
 
-            filter_date_start = request.POST.get('filterDateStart')
+            filter_date_start = request.GET.get('filterDateStart')
             print("date start", filter_date_start)
 
-            filter_date_end = request.POST.get('filterDateEnd')
+            filter_date_end = request.GET.get('filterDateEnd')
             print("date end", filter_date_end)
         else:
             filter_date_start = None

@@ -47,6 +47,6 @@ class Bet(models.Model):
             return round(float(payout_value), 2)
 
     def __str__(self):
-        return self.pick[:25]
+        return self.pick[:30]
     def get_absolute_url(self):
         return reverse("article_detail", kwargs={"pk": self.pk})

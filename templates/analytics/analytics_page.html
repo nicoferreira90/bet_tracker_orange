@@ -31,7 +31,7 @@
             <h4 class="mt-2">Custom Filters</h4>
             <p>Customize your data set here.</p>
 
-            <form id="filterForm" method="POST" action="{% url 'analytics_results' %}">
+            <form id="filterForm" method="GET" action="{% url 'analytics_results' %}">
                 {% csrf_token %}
 
                 <div class="mb-3">
