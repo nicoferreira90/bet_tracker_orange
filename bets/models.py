@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
@@ -25,8 +26,12 @@ class Bet(models.Model):
     """Model a single bet in the database. These are standard bets, not parlays."""
 
     """class Meta:
-            ordering = ['-date_added'] """  # for now keep bets in older to newer order, probably find a way to make the table interactive
+            ordering = ['-date_added'] """  # for now keep bets in older to newer order
 
+    id = models.UUIDField( # new
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     bet_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     site = models.CharField(max_length=25, blank=True, null=True)
     pick = models.CharField(max_length=75)
