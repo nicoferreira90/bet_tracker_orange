@@ -9,7 +9,7 @@ def graph_results(result_array):
     """Generate an interactive graph of the result array."""
     fig = px.line(y=result_array, labels={
             "x": "Bets made (in chronological order)",  # For example, if you're plotting against time
-            "y": "Result (in $$$)"      # If the y-axis represents some measurement
+            "y": "Results (in $$$)"      # If the y-axis represents some measurement
         })
     
     fig.add_shape( # add a horizontal "target" line
