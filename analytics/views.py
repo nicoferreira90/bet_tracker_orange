@@ -11,7 +11,7 @@ from django.db.models import Avg, Sum
 
 class AnalyticsPageView(LoginRequiredMixin, TemplateView):
     template_name = "analytics/analytics_page.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -22,7 +22,7 @@ class AnalyticsPageView(LoginRequiredMixin, TemplateView):
     
 class AnalyticsWithResultsView(LoginRequiredMixin, TemplateView):
     template_name = "analytics/analytics_with_results.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def get(self, request, *args, **kwargs):
         # Process form data here

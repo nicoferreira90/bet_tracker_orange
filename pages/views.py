@@ -12,3 +12,6 @@ class HomePageView(TemplateView):
     
 class AboutPageView(TemplateView):
     template_name = "about_page.html"
+
+class PasswordChangeSuccessView(TemplateView):
+    template_name = "account/password_change_done.html"

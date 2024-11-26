@@ -17,3 +17,4 @@ tzdata==2024.1
 psycopg2-binary==2.9.3
 gunicorn
 environs[django]==9.5.0
+django-allauth==65.2.0 

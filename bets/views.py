@@ -8,7 +8,7 @@ from .models import Bet
 class BetHistoryView(LoginRequiredMixin, ListView):
     model = Bet
     template_name = "bets/bet_history.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
     paginate_by = 20
 
     def get_queryset(self):
@@ -20,7 +20,7 @@ class NewBetView(LoginRequiredMixin, CreateView):
     form_class = BetForm
     template_name = "bets/new_bet.html"
     success_url = reverse_lazy("bet_history")
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def form_valid(self, form):
         # Set the owner of the bet to the current user
@@ -31,7 +31,7 @@ class DeleteBetView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Bet
     template_name = "bets/delete_bet.html"
     success_url = reverse_lazy("bet_history")
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def test_func(self):
         """Checks if bet owner is the same as the current user."""
@@ -43,7 +43,7 @@ class UpdateBetView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = BetForm
     template_name = "bets/update_bet.html"
     success_url = reverse_lazy("bet_history")
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def test_func(self):
         """Checks if bet owner is the same as the current user."""

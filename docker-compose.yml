@@ -1,13 +1,13 @@
 services:
   web:
     build: .
-    command: gunicorn bet_tracker.wsgi -b 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-    - .:/code
+      - .:/code
     ports:
-    - 8000:8000
+      - 8000:8000
     depends_on:
-    - db
+      - db
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-!t$jgoh9(!14o=ex&^$!r6*)wwcu3^u+1=0byl-m=^t*g*6uy2"
       - "DJANGO_DEBUG=True"

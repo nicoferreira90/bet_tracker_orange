@@ -8,7 +8,7 @@ from bets.models import Bet
 class TagListView(LoginRequiredMixin, ListView):
     model = Tag
     template_name = "tags/tag_list.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def get_queryset(self):
         """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
@@ -18,7 +18,7 @@ class NewTagView(LoginRequiredMixin, CreateView):
     model = Tag
     form_class = TagForm
     template_name = "tags/new_tag.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
     success_url = reverse_lazy("tag_list")
 
     def form_valid(self, form):
@@ -38,7 +38,7 @@ class UpdateTagView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Tag
     form_class = TagForm
     template_name = "tags/update_tag.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
     success_url = reverse_lazy("tag_list")
 
     def test_func(self):
@@ -56,7 +56,7 @@ class DeleteTagView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Tag
     template_name = "tags/delete_tag.html"
     success_url = reverse_lazy("tag_list")
-    login_url = login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
 
     def test_func(self):
         """Checks if bet owner is the same as the current user."""
@@ -68,6 +68,7 @@ class BetTagPageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
     model = Bet
     template_name = "tags/bet_tag_page.html"
+    login_url = reverse_lazy("account_login")
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -111,7 +112,7 @@ class BetNewTagView(LoginRequiredMixin, CreateView):
     model = Tag
     form_class = TagForm
     template_name = "tags/new_tag.html"
-    login_url = "/users/login/"
+    login_url = reverse_lazy("account_login")
     success_url = reverse_lazy("bet_tag_page")
 
     def get_success_url(self):

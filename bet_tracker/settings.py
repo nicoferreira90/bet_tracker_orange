@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'debug_toolbar',
+    'allauth',
+    'allauth.account',
 
     # my apps
     'users',
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -138,9 +141,6 @@ AUTH_USER_MODEL = "users.CustomUser"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" # new
 CRISPY_TEMPLATE_PACK = "bootstrap5" # new
 
-LOGIN_REDIRECT_URL = "home_page" # new
-LOGOUT_REDIRECT_URL = "home_page" # new
-
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
@@ -150,3 +150,24 @@ INTERNAL_IPS = [
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+"django.contrib.auth.backends.ModelBackend",
+"allauth.account.auth_backends.AuthenticationBackend", # new
+)
+
+LOGIN_REDIRECT_URL = "home_page" # new
+ACCOUT_LOGOUT_REDIRECT_URL = "home_page" # new
+
+ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "password_change_success"
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+ACCOUNT_USERNAME_REQUIRED = False # new
+ACCOUNT_AUTHENTICATION_METHOD = "email" # new
+ACCOUNT_EMAIL_REQUIRED = True # new
+ACCOUNT_UNIQUE_EMAIL = True # new
+
+""" ACCOUNT_SESSION_REMEMBER = True """

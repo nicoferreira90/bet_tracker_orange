@@ -15,46 +15,46 @@
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
         <style>
-            .navbar a {
+            .navbar-brand a {
+                position: relative;
                 text-decoration: none;
-                color: #5412EC; /* Darker blue color */
+                color: inherit;
             }
-            .navbar a:hover {
-                text-decoration: underline; 
+    
+            /* Hover effect - adds a small blue strip underneath the link */
+            .navbar-brand:not(:first-child):not(:last-child) a:hover::after {
+                content: '';
+                position: absolute;
+                bottom: -12px; /* Move the strip slightly further down from the text */
+                left: 0;
+                width: 100%;
+                height: 8px; /* Increase the height of the strip */
+                background-color: blue; /* Set the color of the strip */
+                transition: all 0.3s ease-in-out; /* Smooth transition for the effect */
             }
-            .dropdown-item {
-                display: block; 
-                padding: 8px 16px; 
-                color: #5412EC; /* Darker blue color */
-                text-decoration: none; 
-                background: none; 
-                border: none; 
-                cursor: pointer; 
+    
+            /* Optional: Remove underline on hover */
+            .navbar-brand a:hover {
+                text-decoration: none;
             }
-            
-            .dropdown-item:hover {
-                color: #5412EC; /* Darker blue color */
-                text-decoration: underline;
-            }
-            
-        
+    
         </style>
 
     </head>
     <body>
 
         <!-- As a heading -->
-        <nav class="navbar navbar-light sticky-top" style="background-color: #FFF; border: 1px solid #ccc;">
+        <nav class="navbar navbar-light sticky-top" style="background-color: #FFF; border: 1px solid #ccc; height: 62px;">
             <div class="container-fluid d-flex align-items-center" style="width: 95%;">
                 <span class="navbar-brand mb-0 h1">
                     <a href="{% url "home_page" %}" class="navbar-brand">
                     <img src="{% static 'betview-high-resolution-logo-transparent.png' %}" class="img-fluid" alt="..." style="max-height: 28px;">
                     </a>
                 </span>
-                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "bet_history" %}">Bet History</a></span>
-                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "analytics_page" %}">Analytics</a></span>
-                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "tag_list" %}">Custom Tags</a></span>
-                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "about_page" %}">About this Site</a></span>
+                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "bet_history" %}" style="color: blue;">Bet History</a></span>
+                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "analytics_page" %}" style="color: blue;">Analytics</a></span>
+                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "tag_list" %}" style="color: blue;">Custom Tags</a></span>
+                <span class="navbar-brand mb-0 h1 fs-4"><a href="{% url "about_page" %}" style="color: blue;">About this Site</a></span>
         
                 <span class="navbar-brand mb-0 h1">
                     {% if user.is_authenticated %}
@@ -65,10 +65,10 @@
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li>
-                                <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                                <a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
                             </li>
                             <li>
-                                <form action="{% url 'logout' %}" method="post">
+                                <form action="{% url 'account_logout' %}" method="post">
                                     {% csrf_token %}
                                     <button type="submit" class="dropdown-item logout-button" style="background: none; border: none; padding: 0; text-align: center; cursor: pointer;">
                                         Log out
@@ -79,8 +79,8 @@
                     </div>
                     {% else %}
                     <div class="text-end">
-                        <a href="{% url "login" %}" class="btn btn-primary active me-2 border border-dark">Log In</a>
-                        <a href="{% url "signup" %}" class="btn btn-success active border border-dark">Sign Up</a>
+                        <a href="{% url "account_login" %}" class="btn btn-primary active me-2 border border-dark">Log In</a>
+                        <a href="{% url "account_signup" %}" class="btn btn-success active border border-dark">Sign Up</a>
                     </div>
                     {% endif %}
                 </span>
