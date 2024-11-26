@@ -18,3 +18,4 @@ psycopg2-binary==2.9.3
 gunicorn
 environs[django]==9.5.0
 django-allauth==65.2.0 
+whitenoise==6.1.0
