@@ -141,3 +141,9 @@ def remove_associated_tag(request, pk):
     context["inactive_tags"] = Tag.objects.filter(tag_owner=request.user).exclude(associated_bets=context["bet"]).distinct()
 
     return render(request, 'tags/partials/bet_tag_table.html', context)
+
+""" def add_associated_tag(request, pk):
+    print("addition is working")
+    
+    chosen_tag = Tag.objects.get(label=request.POST.get('tag-select'))
+    chosen_tag.associated_bets.add(Bet.objects.get(id=pk)) """
