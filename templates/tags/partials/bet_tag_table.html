@@ -40,7 +40,14 @@
                 <option value="{{ tag }}">{{ tag }}</option>
             {% endfor %}
         </select>
-        <button id="assign-tag-button" class="btn btn-success active border border-dark" type="submit">Assign Tag to this Bet</button>
+        <button hx-post="{% url "add_associated_tag" bet.pk %}"
+                hx-target="#bet_tag_list"
+                id="assign-tag-button" 
+                class="btn btn-success active border border-dark" 
+                type="submit"
+        >
+                    Assign Tag to this Bet
+        </button>
         <a class="btn btn-warning border border-dark" style="margin: 10px;" href="{% url 'bet_new_tag' %}?bet_pk={{ bet.pk }}" role="button">Create a new Tag</a>
     </form>
 </div>
