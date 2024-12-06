@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TagListView, NewTagView, UpdateTagView, DeleteTagView, BetTagPageView, BetNewTagView, remove_associated_tag
+from .views import TagListView, NewTagView, UpdateTagView, DeleteTagView, BetTagPageView, BetNewTagView, remove_associated_tag, add_associated_tag
 
 urlpatterns = [
     path("", TagListView.as_view(), name="tag_list"),
@@ -12,7 +12,8 @@ urlpatterns = [
 ]
 
 htmx_urlpatterns = [
-    path("remove_associated_tag/<uuid:pk>/", remove_associated_tag, name="remove_associated_tag")
+    path("remove_associated_tag/<uuid:pk>/", remove_associated_tag, name="remove_associated_tag"),
+    path("add_associated_tag/<uuid:pk>/", add_associated_tag, name="add_associated_tag"),
 ]
 
 urlpatterns = urlpatterns + htmx_urlpatterns
