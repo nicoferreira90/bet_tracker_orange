@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from .models import Tag
@@ -77,9 +78,7 @@ class BetTagPageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         if request.POST.get('tag-select'):
             chosen_tag = Tag.objects.get(label=request.POST.get('tag-select'))
             chosen_tag.associated_bets.add(self.object)
-        else:
-            removed_tag = Tag.objects.get(id=request.POST.get('tag-id'))
-            removed_tag.associated_bets.remove(self.object)
+
         context["bet"] = self.get_object()
 
         return self.render_to_response(context)
@@ -130,3 +129,21 @@ class BetNewTagView(LoginRequiredMixin, CreateView):
         form = super().get_form(*args, **kwargs)
         form.fields['associated_bets'].queryset = Bet.objects.filter(bet_owner=self.request.user)
         return form
+
+def remove_associated_tag(request, pk):
+    print("this is working!!")
+    bet_id = request.POST.get("bet-id")
+    removed_tag = Tag.objects.get(id=request.POST.get('tag-id'))
+    removed_tag.associated_bets.remove(Bet.objects.get(id=bet_id))
+    context = {
+        "bet": Bet.objects.get(id=bet_id),
+    }
+    context["inactive_tags"] = Tag.objects.filter(tag_owner=request.user).exclude(associated_bets=context["bet"]).distinct()
+
+    return render(request, 'tags/partials/bet_tag_table.html', context)
+
+""" def add_associated_tag(request, pk):
+    print("addition is working")
+    
+    chosen_tag = Tag.objects.get(label=request.POST.get('tag-select'))
+    chosen_tag.associated_bets.add(Bet.objects.get(id=pk)) """

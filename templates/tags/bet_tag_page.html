@@ -12,46 +12,10 @@
 
 <h2>Active Tags for this Bet:</h2>
 <div style="display: flex; align-items: flex-start;">
-    <div style="flex: 1; max-width: 75%;">
-        <table class="table" style="width: 100%;">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th> <!-- New header for actions -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for tag in bet.tags.all %}
-                <tr>
-                    <td><b>{{ tag }}</b></td>
-                    <td><i>{{ tag.description }}</i></td>
-                    <td>
-                        <form action="{% url 'bet_tag_page' pk=bet.pk %}" method="POST" style="display:inline;">
-                            {% csrf_token %}
-                            <input type="hidden" name="tag-id" value="{{tag.id}}">
-                            <button class="btn btn-danger border border-dark" type="submit" name="remove-tag">Remove Tag</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    
+    {% include "tags/partials/bet_tag_table.html" %}
 
 </div>
 
 
-<form action="{% url 'bet_tag_page' pk=pk %}" method="POST">
-    {% csrf_token %}
-    <p>Select a Tag to assign to this bet from the drop-down list:</p>
-    <select name="tag-select" class="form-select" aria-label="no-label" style="width: 40%;" id="tag-select" required>
-        <option value="" disabled selected>Select from your existing Tags</option>
-        {% for tag in inactive_tags %}
-            <option value="{{ tag }}">{{ tag }}</option>
-        {% endfor %}
-    </select>
-    <button id="assign-tag-button" class="btn btn-success active border border-dark" type="submit">Assign Tag to this Bet</button>
-    <a class="btn btn-warning border border-dark" style="margin: 10px;" href="{% url 'bet_new_tag' %}?bet_pk={{ bet.pk }}" role="button">Create a new Tag</a>
-</form>
 {% endblock content %}
