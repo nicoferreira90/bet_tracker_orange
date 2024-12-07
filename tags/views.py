@@ -2,6 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from .models import Tag
 from .forms import TagForm
 from bets.models import Bet
@@ -129,6 +132,20 @@ class BetNewTagView(LoginRequiredMixin, CreateView):
         form = super().get_form(*args, **kwargs)
         form.fields['associated_bets'].queryset = Bet.objects.filter(bet_owner=self.request.user)
         return form
+
+@require_http_methods(['DELETE'])
+@login_required    
+def delete_tag_view(request, pk):
+    if request.user == Tag.objects.get(pk=pk).tag_owner:
+        Tag.objects.get(pk=pk).delete()
+        tag_list = Tag.objects.filter(tag_owner=request.user)
+        context = {
+            "tag_list": tag_list,
+        }
+        return render(request, "tags/partials/tag_list_table.html", context=context)
+    else:
+        raise PermissionDenied
+
 
 def remove_associated_tag(request, pk):
     print("this is working!!")
