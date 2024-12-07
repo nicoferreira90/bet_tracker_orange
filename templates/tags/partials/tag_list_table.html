@@ -1,0 +1,31 @@
+<div id="tag_list_table">
+<table class="table" style="width: 75%;">
+    <thead>
+      <tr>
+        <th scope="col">Label</th>
+        <th scope="col">Description</th>
+        <th scope="col" class="col-sm-3 text-nowrap">Actions</th>
+      </tr>
+    </thead>
+  
+  <tbody >
+    {% for tag  in tag_list %}
+    <tr>
+        <td>{{tag.label}}</td>
+        <td>{{tag.description}}</td>
+        <td>
+            <div style="display: flex; gap: 5px;">
+                <a class="btn btn-primary active btn-sm border border-dark" href="{% url 'update_tag' tag.pk %}" role="button">Update Tag</a>
+                <a hx-delete="{% url 'delete_tag' tag.pk %}"
+                   hx-target="#tag_list_table"
+                   hx-confirm="Are you sure you want to delete {{ tag }}?"
+                   class="btn btn-danger btn-sm border border-dark"
+                   role="button">Delete Tag</a>
+            </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+</div>

@@ -33,7 +33,7 @@
 
     <form action="{% url 'bet_tag_page' pk=bet.pk %}" method="POST">
         {% csrf_token %}
-        <p>Select a Tag to assign to this bet from the drop-down list:</p>
+        <p>Select a Tag to assign to this Bet from the drop-down list:</p>
         <select name="tag-select" class="form-select" aria-label="no-label" style="width: 40%;" id="tag-select" required>
             <option value="" disabled selected>Select from your existing Tags</option>
             {% for tag in inactive_tags %}

@@ -58,7 +58,7 @@ class TagModificationTests(TestCase):
         response = self.client.post(reverse('delete_tag', args=[self.tag.pk]))
         
         # Check that the response is a redirect (forbidden)
-        self.assertEqual(response.status_code, 403)  # Expect a forbidden status
+        self.assertEqual(response.status_code, 405)  # Expect a forbidden status
         self.assertTrue(Tag.objects.filter(pk=self.tag.pk).exists())  # Ensure the tag
     
     def test_update_tag_page_unauthorized_user(self):
@@ -75,4 +75,4 @@ class TagModificationTests(TestCase):
 
         # Attempt to access the delete tag page
         response = self.client.get(reverse('delete_tag', args=[self.tag.pk]))
-        self.assertEqual(response.status_code, 403)  # Expect a forbidden status
+        self.assertEqual(response.status_code, 405)  # Expect a forbidden status
