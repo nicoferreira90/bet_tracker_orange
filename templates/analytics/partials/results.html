@@ -1,0 +1,83 @@
+<div class="col-10 card" style="border-radius: 0;">
+    <h4 class="mt-2">Results</h4>
+    
+    {% if user_bets %}
+    <div>{{graph|safe}}</div>
+    <div class="row mt-4" style="width: 85%; margin: 0 auto;">
+        <div class="col-md-6">
+            <table class="table table-bordered border-dark table-hover" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+
+                <tbody>
+                  <tr>
+                    <th scope="row">Total bets made</th>
+                    <td>{{bet_count}}</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">Total bets pending</th>
+                    <td>{{bets_pending_count}}</td>
+                    
+                  </tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total bets won</th>
+                    <td>{{bets_won_count}}</td>
+         
+                  </tr>
+                  <tr>
+                    <th scope="row">Total bets lost</th>
+                    <td>{{bets_lost_count}}</td>
+         
+                  </tr>
+                  <tr>
+                    <th scope="row">Total bets pushed</th>
+                    <td>{{bets_pushed_count}}</td>
+         
+                  </tr>
+
+
+                </tbody>
+              </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered border-dark table-hover" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);" >
+
+                <tbody >
+                    <tr>
+                        <th scope="row">Bet Win % [(Bets Won)/(Bets Won + Bets Lost)]</th>
+                        <td>{{ bet_win_percentage|floatformat:2 }}%</td>
+             
+                    </tr>
+                    <tr>
+                        <th scope="row">Average odds</th>
+                        <td>{{ average_odds|floatformat:3 }}</td>
+             
+                    </tr>
+                  <tr>
+                    <th scope="row">Total amount wagered</th>
+                    <td>${{ total_amount_wagered|floatformat:2 }}</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">Net result</th>
+                    <td>${{ net_result|floatformat:2 }}</td>
+                    
+                  </tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">Return on Investment (ROI)</th>
+                    <td>{{ roi|floatformat:2 }}%</td>
+         
+                  </tr>
+
+                </tbody>
+              </table>
+        </div>
+      
+</div>
+{% else %}
+        <div class="alert alert-info" role="alert">
+            There is not data to analyze. Register some bets first.
+        </div>
+ {% endif %}       
+</div>
