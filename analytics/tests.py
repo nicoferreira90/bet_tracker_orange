@@ -17,7 +17,7 @@ class AnalyticsWithResultsViewTests(TestCase):
         Bet.objects.create(bet_owner=self.user, result='Pending', stake=30, odds=1.0)
 
     def test_post_with_filters(self):
-        response = self.client.get(reverse('analytics_results'), {
+        response = self.client.get(reverse('analytics_page'), {
             'type-filter': 'category-all',
             'result-filter': 'category-all',
             'tag-filter': '',
@@ -32,7 +32,7 @@ class AnalyticsWithResultsViewTests(TestCase):
         self.assertEqual(response.context['bets_pending_count'], 1)  # 1 pending
 
     def test_post_with_custom_date_filter(self):
-        response = self.client.get(reverse('analytics_results'), {
+        response = self.client.get(reverse('analytics_page'), {
             'type-filter': 'category-all',
             'result-filter': 'category-all',
             'tag-filter': '',
@@ -47,7 +47,7 @@ class AnalyticsWithResultsViewTests(TestCase):
 
 
     def test_invalid_filters(self):
-        response = self.client.get(reverse('analytics_results'), {
+        response = self.client.get(reverse('analytics_page'), {
             'type-filter': 'invalid-category',
             'result-filter': 'invalid-result',
             'tag-filter': '',
