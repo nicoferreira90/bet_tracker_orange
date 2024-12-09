@@ -67,6 +67,23 @@
                     margin-top: 10px;
                 }
             }
+
+            .navbar-nav .nav-item a {
+                transition: color 0.2s ease;
+                color: blue; /* Ensure default color is blue */
+            }
+            
+            /* Hover effect on links */
+            .navbar-nav .nav-item a:hover {
+                color: #3898b5; /* Lighter shade of blue */
+            }
+            
+            /* Ensure navbar-brand doesn't interfere with hover effect */
+            .navbar-brand {
+                color: inherit; /* Inherit color from parent */
+            }
+
+
         </style>
     </head>
     <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
@@ -85,16 +102,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="{% url 'bet_history' %}" class="navbar-brand mb-0 h1 fs-4" style="color: blue;">Bet History</a>
+                            <a href="{% url 'bet_history' %}" class="navbar-brand mb-0 h1 fs-4">Bet History</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'analytics_page' %}" class="navbar-brand mb-0 h1 fs-4" style="color: blue;">Analytics</a>
+                            <a href="{% url 'analytics_page' %}" class="navbar-brand mb-0 h1 fs-4"">Analytics</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'tag_list' %}" class="navbar-brand mb-0 h1 fs-4" style="color: blue;">Custom Tags</a>
+                            <a href="{% url 'tag_list' %}" class="navbar-brand mb-0 h1 fs-4"">Custom Tags</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'about_page' %}" class="navbar-brand mb-0 h1 fs-4" style="color: blue;">About this Site</a>
+                            <a href="{% url 'about_page' %}" class="navbar-brand mb-0 h1 fs-4">About this Site</a>
                         </li>
                     </ul>
                     <span class="navbar-brand mb-0 h1">
