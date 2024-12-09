@@ -1,6 +1,10 @@
 <div class="col-10 card" style="border-radius: 0;">
     <h4 class="mt-2">Results</h4>
-    
+    {% if not graph %}
+      <div class="alert alert-info" role="alert">
+        Select your data set and click 'FILTER' to generate a report.
+      </div>
+    {% else %}
     {% if user_bets %}
     <div>{{graph|safe}}</div>
     <div class="row mt-4" style="width: 85%; margin: 0 auto;">
@@ -79,5 +83,8 @@
         <div class="alert alert-info" role="alert">
             There is not data to analyze. Register some bets first.
         </div>
- {% endif %}       
+ {% endif %}
+ {% endif %}
+        
+
 </div>
