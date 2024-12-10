@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # 3rd party apps
     'crispy_forms',
@@ -156,12 +157,14 @@ AUTHENTICATION_BACKENDS = (
 "allauth.account.auth_backends.AuthenticationBackend", # new
 )
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 LOGIN_REDIRECT_URL = "home_page" # new
 ACCOUT_LOGOUT_REDIRECT_URL = "home_page" # new
 
 ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "password_change_success"
 
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 
 ACCOUNT_USERNAME_REQUIRED = False # new
 ACCOUNT_AUTHENTICATION_METHOD = "email" # new
