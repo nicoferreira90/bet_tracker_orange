@@ -15,7 +15,7 @@
         <td>{{tag.description}}</td>
         <td>
             <div style="display: flex; gap: 5px;">
-                <a class="btn btn-primary active btn-sm border border-dark" href="{% url 'update_tag' tag.pk %}" role="button">Update Tag</a>
+                <a class="btn btn-primary btn-sm border border-dark" href="{% url 'update_tag' tag.pk %}" role="button">Update Tag</a>
                 <a hx-delete="{% url 'delete_tag' tag.pk %}"
                    hx-target="#tag_list_table"
                    hx-confirm="Are you sure you want to delete {{ tag }}?"
