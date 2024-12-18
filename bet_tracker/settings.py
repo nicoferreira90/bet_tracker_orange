@@ -195,6 +195,6 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com", "www.betview.net"]
+CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com", "https://www.betview.net", "https://betview.net"]
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
