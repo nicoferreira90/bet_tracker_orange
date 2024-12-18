@@ -18,7 +18,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0:8000"]
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0:8000", "betview.net", "www.betview.net"]
 
 
 # Application definition
@@ -154,22 +154,32 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
 "django.contrib.auth.backends.ModelBackend",
-"allauth.account.auth_backends.AuthenticationBackend", # new
+"allauth.account.auth_backends.AuthenticationBackend", 
 )
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new. SMTP now instead of console.
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+SENDGRID_API_KEY = env('SENDGRID_API_KEY', default="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")
+EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY', default="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")
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "betviewcontact@gmail.com" 
 
-LOGIN_REDIRECT_URL = "home_page" # new
-ACCOUT_LOGOUT_REDIRECT_URL = "home_page" # new
+
+
+
+LOGIN_REDIRECT_URL = "home_page"
+ACCOUT_LOGOUT_REDIRECT_URL = "home_page"
 
 ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "password_change_success"
 
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 
-ACCOUNT_USERNAME_REQUIRED = False # new
-ACCOUNT_AUTHENTICATION_METHOD = "email" # new
-ACCOUNT_EMAIL_REQUIRED = True # new
-ACCOUNT_UNIQUE_EMAIL = True # new
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 
 """ ACCOUNT_SESSION_REMEMBER = True """
 
@@ -185,6 +195,6 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com", "www.betview.net"]
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
