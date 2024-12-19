@@ -20,6 +20,7 @@ BET_TYPE_CHOICES = [
     ('Teaser', 'Teaser'),
     ('Total', 'Total'),
     ('Props', 'Props'),
+    ('Parlay', 'Parlay'),
 ]
 
 class Bet(models.Model):
