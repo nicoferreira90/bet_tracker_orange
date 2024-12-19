@@ -2,7 +2,6 @@
 from pathlib import Path
 from environs import Env # type: ignore
 from django.core.management.utils import get_random_secret_key
-from .middleware import RedirectNonWwwMiddleware
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'RedirectNonWwwMiddleware', #testing this
+    'bet_tracker.middleware.RedirectNonWwwMiddleware', #testing this
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
