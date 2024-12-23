@@ -162,8 +162,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new. SMTP now in
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-SENDGRID_API_KEY = env('SENDGRID_API_KEY', default="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")
-EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY', default="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")
+SENDGRID_API_KEY = env('SENDGRID_API_KEY', default="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") # default is just an old obsolete key
+EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY', default="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") # default is just an old obsolete key
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "betviewcontact@gmail.com" 
 
