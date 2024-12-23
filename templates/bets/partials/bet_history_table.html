@@ -16,97 +16,37 @@
       </tr>
     </thead>
     <tbody>
-
         {% for bet in bet_list %}
-        {% if bet.result == "Win" %}
-            <tr class="table-success border-dark table-bordered">
-                <td>{{ bet.date_added }}</td>
-                <td>{{ bet.site|slice:"0:25" }}</td>
-                <td>{{ bet.bet_type }}</td>
-                <td>{{ bet.pick|slice:"0:25" }}</td>
-                <td>{{ bet.stake|slice:"0:25" }}</td>
-                <td>{{ bet.odds }}</td>
-                <td>{{ bet.result }}</td>
-                <td>{{ bet.payout }}</td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a hx-delete="{% url "delete_bet" bet.pk %}"
-                        hx-confirm="Are you sure you want to delete this bet: {{bet.pick}}?"
-                        hx-target="#bet_history_table" 
-                        class="btn btn-danger btn-sm border border-dark" 
-                        role="button">Delete Bet</a>
-                    
-                </td>
-
-            </tr>
-
-        {% elif bet.result == "Lose" %}
-            <tr class="table-danger border-dark table-bordere">
-                <td>{{ bet.date_added }}</td>
-                <td>{{ bet.site|slice:"0:25" }}</td>
-                <td>{{ bet.bet_type }}</td>
-                <td>{{ bet.pick|slice:"0:25" }}</td>
-                <td>{{ bet.stake|slice:"0:25" }}</td>
-                <td>{{ bet.odds }}</td>
-                <td>{{ bet.result }}</td>
-                <td>{{ bet.payout }}</td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a hx-delete="{% url "delete_bet" bet.pk %}"
-                        hx-confirm="Are you sure you want to delete this bet: {{bet.pick}}?"
-                        hx-target="#bet_history_table" 
-                        class="btn btn-danger btn-sm border border-dark" 
-                        role="button">Delete Bet</a>
-                </td>
-            </tr>
-        {% elif bet.result == "Pending" %}
-            <tr class="table-warning border-dark table-bordere">
-                <td>{{ bet.date_added }}</td>
-                <td>{{ bet.site|slice:"0:25" }}</td>
-                <td>{{ bet.bet_type }}</td>
-                <td>{{ bet.pick|slice:"0:25" }}</td>
-                <td>{{ bet.stake|slice:"0:25" }}</td>
-                <td>{{ bet.odds }}</td>
-                <td>{{ bet.result }}</td>
-                <td>{{ bet.payout }}</td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a hx-delete="{% url "delete_bet" bet.pk %}"
-                        hx-confirm="Are you sure you want to delete this bet: {{bet.pick}}?"
-                        hx-target="#bet_history_table" 
-                        class="btn btn-danger btn-sm border border-dark" 
-                        role="button">Delete Bet</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr class="border-dark table-bordere">
-                <td>{{ bet.date_added }}</td>
-                <td>{{ bet.site|slice:"0:25" }}</td>
-                <td>{{ bet.bet_type }}</td>
-                <td>{{ bet.pick|slice:"0:25" }}</td>
-                <td>{{ bet.stake|slice:"0:25" }}</td>
-                <td>{{ bet.odds }}</td>
-                <td>{{ bet.result }}</td>
-                <td>{{ bet.payout }}</td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm border border-dark" href="{% url "bet_tag_page" bet.pk %}" role="button">Manage Tags</a>
-                    <a class="btn btn-primary btn-sm border border-dark" href="{% url "update_bet" bet.pk %}" role="button">Update Bet</a>
-                    <a hx-delete="{% url "delete_bet" bet.pk %}"
-                        hx-confirm="Are you sure you want to delete this bet: {{bet.pick}}?"
-                        hx-target="#bet_history_table" 
-                        class="btn btn-danger btn-sm border border-dark" 
-                        role="button">Delete Bet</a>
-                </td>
-            </tr>
-        {% endif %}
+        <tr x-show="search === '' || '{{ bet.pick }}'.toLowerCase().includes(search.toLowerCase())"
+         class="{% if bet.result == 'Win' %}
+                table-success
+                {% elif bet.result == 'Lose' %}
+                table-danger
+                {% elif bet.result == 'Pending' %}
+                table-warning{% else %}
+                table-light{% endif %} 
+                border-dark table-bordered">
+            <td>{{ bet.date_added }}</td>
+            <td>{{ bet.site|slice:"0:25" }}</td>
+            <td>{{ bet.bet_type }}</td>
+            <td>{{ bet.pick|slice:"0:25" }}</td>
+            <td>{{ bet.stake|slice:"0:25" }}</td>
+            <td>{{ bet.odds }}</td>
+            <td>{{ bet.result }}</td>
+            <td>{{ bet.payout }}</td>
+            <td class="text-center">
+                <a class="btn btn-warning btn-sm border border-dark" href="{% url 'bet_tag_page' bet.pk %}" role="button">Manage Tags</a>
+                <a class="btn btn-primary btn-sm border border-dark" href="{% url 'update_bet' bet.pk %}" role="button">Update Bet</a>
+                <a hx-delete="{% url 'delete_bet' bet.pk %}"
+                    hx-confirm="Are you sure you want to delete this bet: {{bet.pick}}?"
+                    hx-target="#bet_history_table" 
+                    class="btn btn-danger btn-sm border border-dark" 
+                    role="button">Delete Bet</a>
+            </td>
+        </tr>
         {% empty %}
         <h2 class="text-center">Let's start by adding some bets!</h2>
         {% endfor %}
-
-
     </tbody>
 </table>
 
