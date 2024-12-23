@@ -4,8 +4,14 @@
 
 {% load static %}
 
-<div class="d-grid gap-2 col-6 mx-auto mb-4">
+<div x-data="{search: ''}">
+<div class="row justify-content-center">
+<div class="d-grid gap-2 col-5 mb-4">
+    <input type="text" placeholder="Search for a pick..." x-model="search">
+</div>
+<div class="d-grid gap-2 col-5 mb-4">
     <a class="btn btn-success border border-dark" href="{% url "new_bet" %}" role="button">Add a New Bet</a>
+</div>
 </div>
 
 {% include "bets/partials/bet_history_table.html" %}
@@ -14,4 +20,5 @@
 
   
 {% endblock content %}
+</div>
 
