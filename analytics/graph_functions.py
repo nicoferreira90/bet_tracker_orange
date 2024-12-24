@@ -8,6 +8,7 @@ import plotly.offline as pyo
 def graph_results(result_array):
     """Generate an interactive graph of the result array."""
     fig = px.line(
+        render_mode='webgl',
         y=result_array,
         labels={
             "x": "Bets made (in chronological order)",  # For example, if you're plotting against time
