@@ -1,4 +1,3 @@
-
 from django.urls import path
 from .views import BetHistoryView, NewBetView, UpdateBetView, delete_bet_view
 
@@ -7,7 +6,6 @@ urlpatterns = [
     path("new_bet/", NewBetView.as_view(), name="new_bet"),
     path("update_bet/<uuid:pk>/", UpdateBetView.as_view(), name="update_bet"),
     path("", BetHistoryView.as_view(), name="bet_history"),
-
 ]
 
 htmx_urlpatterns = [

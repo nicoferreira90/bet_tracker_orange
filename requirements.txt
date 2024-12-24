@@ -19,3 +19,4 @@ gunicorn
 environs[django]==9.5.0
 django-allauth==65.2.0 
 whitenoise==6.1.0
+black
