@@ -2,9 +2,10 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 from .models import Tag
+from bets.models import Bet
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -84,3 +85,56 @@ class TagModificationTests(TestCase):
         # Attempt to access the delete tag page
         response = self.client.get(reverse("delete_tag", args=[self.tag.pk]))
         self.assertEqual(response.status_code, 405)  # Expect a forbidden status
+
+
+class BetTagIntegrationTest(TestCase):
+    """Tests for the integration of tags with bets."""
+
+    def setUp(self):
+        self.client = Client()
+        self.user = get_user_model().objects.create_user(
+            username="testuser", password="password"
+        )
+        self.client.login(username="testuser", password="password")
+        self.bet = Bet.objects.create(
+            bet_owner=self.user,
+            site="Test Site",
+            pick="Test Pick",
+            stake=100.00,
+            odds=1.50,
+            bet_type="Spread",
+            result="Pending",
+        )
+        self.tag = Tag.objects.create(
+            label="Test Tag", description="Test Description", tag_owner=self.user
+        )
+
+    def test_add_tag_to_bet(self):
+        self.tag.associated_bets.add(self.bet)
+        self.assertIn(self.bet, self.tag.associated_bets.all())
+        self.assertIn(self.tag, self.bet.tags.all())
+
+    def test_remove_tag_from_bet(self):
+        self.tag.associated_bets.add(self.bet)
+        self.tag.associated_bets.remove(self.bet)
+        self.assertNotIn(self.bet, self.tag.associated_bets.all())
+        self.assertNotIn(self.tag, self.bet.tags.all())
+
+    def test_view_add_tag_to_bet(self):
+        response = self.client.post(
+            reverse("add_associated_tag", args=[self.bet.id]),
+            {"tag-select": self.tag.label},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.bet, self.tag.associated_bets.all())
+        self.assertIn(self.tag, self.bet.tags.all())
+
+    def test_view_remove_tag_from_bet(self):
+        self.tag.associated_bets.add(self.bet)
+        response = self.client.post(
+            reverse("remove_associated_tag", args=[self.bet.id]),
+            {"bet-id": self.bet.id, "tag-id": self.tag.id},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(self.bet, self.tag.associated_bets.all())
+        self.assertNotIn(self.tag, self.bet.tags.all())
