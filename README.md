@@ -5,12 +5,12 @@ Betview simplifies the process of tracking and analyzing betting activities, ena
 &nbsp;
 &nbsp;
 
-![alt text](media/bv-ss1.png)
+![alt text](static/bv-ss1.png)
 
 &nbsp;
 &nbsp;
 
-![alt text](media/BV-AP.png)
+![alt text](static/BV-AP.png)
 
 &nbsp;
 &nbsp;
