@@ -18,3 +18,6 @@ class AboutPageView(TemplateView):
 
 class PasswordChangeSuccessView(TemplateView):
     template_name = "account/password_change_done.html"
+
+class VersionHistoryPageView(TemplateView):
+    template_name = "version_history.html"
