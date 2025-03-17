@@ -96,6 +96,15 @@
                 background-color: rgb(30, 30, 255) !important; /* A slightly darker shade */
             }
 
+            .footer {
+                background-color: white;
+                padding: 10px 0;
+                text-align: center;
+                position: relative;
+                width: 100%;
+                margin-top: auto; /* Ensures footer is pushed to the bottom */
+            }
+
         </style>
     </head>
     <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
@@ -161,6 +170,10 @@
                 {% block content %}
                 {% endblock content %}
             </div>
+            <footer class="footer">
+                <p>&copy; 2024-2025 Nicolás Ferreira. All rights reserved.
+                     <a href="{% url "version_history" %}">Version History.</a> </p>
+            </footer>
         </main>
 
         <!-- Bootstrap JavaScript Bundle -->
