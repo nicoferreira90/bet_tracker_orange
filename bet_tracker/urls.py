@@ -21,4 +21,5 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("analytics/", include("analytics.urls")),
     path("tags/", include("tags.urls")),
+    path("users/", include("users.urls")),
 ] + debug_toolbar_urls()

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>User Settings</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <p><i>(i.e. do you want to make every row in the Bet History table white?)</i></p>
+    <button class="btn btn-success ml-2 border border-dark" type="submit">Save Settings</button>
+</form>
+
+{% endblock content %}

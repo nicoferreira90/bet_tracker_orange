@@ -13,6 +13,9 @@ class CustomUserAdmin(UserAdmin):
         "email",
         "username",
         "is_staff",
+        "odds_preference",
+        "items_per_page",
+        "remove_color_from_tables",
     ]
 
 
