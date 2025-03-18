@@ -98,11 +98,24 @@
 
             .footer {
                 background-color: white;
-                padding: 10px 0;
                 text-align: center;
                 position: relative;
                 width: 100%;
-                margin-top: auto; /* Ensures footer is pushed to the bottom */
+            }
+
+            html, body {
+                height: 100%;
+                margin: 0; /* Remove default margin */
+            }
+            
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            
+            main {
+                flex: 1; /* This ensures the main content takes up the remaining space */
             }
 
         </style>
@@ -170,11 +183,13 @@
                 {% block content %}
                 {% endblock content %}
             </div>
-            <footer class="footer">
-                <p>&copy; 2024-2025 Nicolás Ferreira. All rights reserved.
-                     <a href="{% url "version_history" %}">Version History.</a> </p>
-            </footer>
         </main>
+
+
+        <footer class="footer">
+            <p>&copy; 2024-2025 Nicolás Ferreira. All rights reserved.
+                 <a href="{% url "version_history" %}">Version History.</a> </p>
+        </footer>
 
         <!-- Bootstrap JavaScript Bundle -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
