@@ -38,6 +38,20 @@ class Bet(models.Model):
     bet_type = models.CharField(max_length=25, choices=BET_TYPE_CHOICES)
     result = models.CharField(max_length=25, choices=RESULT_CHOICES)
 
+    @staticmethod
+    def american_to_decimal(american_odds):
+        if american_odds > 0:
+            return (american_odds / 100) + 1
+        else:
+            return (100 / abs(american_odds)) + 1
+
+    @staticmethod
+    def decimal_to_american(decimal_odds):
+        if decimal_odds > 2:
+            return (decimal_odds - 1) * 100
+        else:
+            return -100 / (decimal_odds - 1)
+
     # In Django (and Python more generally), the @property decorator is a built-in feature that allows you to define methods in a class that can be accessed like attributes.
     @property
     def payout(self):
