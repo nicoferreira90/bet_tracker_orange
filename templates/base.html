@@ -156,6 +156,7 @@
                                     hello, {{ user.username }}!
                                 </a>
                                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                                    <li><a class="dropdown-item" href="{% url 'user_settings' user.pk %}">User Settings</a></li>
                                     <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a></li>
                                     <li>
                                         <form action="{% url 'account_logout' %}" method="post">
@@ -165,6 +166,7 @@
                                             </button>
                                         </form>
                                     </li>
+                                    
                                 </ul>
                             </div>
                         {% else %}
