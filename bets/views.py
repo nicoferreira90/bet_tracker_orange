@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from .forms import BetForm
+from .forms import BetForm, BetAmericanForm
 from .models import Bet
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
@@ -28,10 +28,30 @@ class NewBetView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("bet_history")
     login_url = reverse_lazy("account_login")
 
+    def get_form_class(self):
+        # Select the appropriate form based on the user's odds preference
+        if self.request.user.odds_preference == "decimal":
+            return BetForm
+        else:
+            return BetAmericanForm
+
     def form_valid(self, form):
         # Set the owner of the bet to the current user
+
+        print(f"Bet instance before saving: {form.instance.odds}")
+
+        if not form.instance.odds:
+            form.instance.odds = form.cleaned_data.get("odds")
+
+        print(f"Bet instance before saving: {form.instance.odds}")
+
         form.instance.bet_owner = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["odds_preference"] = self.request.user.odds_preference
+        return context
 
 
 class UpdateBetView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -41,10 +61,35 @@ class UpdateBetView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy("bet_history")
     login_url = reverse_lazy("account_login")
 
+    def get_form_class(self):
+        # Select the appropriate form based on the user's odds preference
+        if self.request.user.odds_preference == "decimal":
+            return BetForm
+        else:
+            return BetAmericanForm
+
+    def form_valid(self, form):
+        # Set the owner of the bet to the current user
+
+        print(f"Bet instance before saving: {form.instance.odds}")
+
+        if not form.instance.odds:
+            form.instance.odds = form.cleaned_data.get("odds")
+
+        print(f"Bet instance before saving: {form.instance.odds}")
+
+        form.instance.bet_owner = self.request.user
+        return super().form_valid(form)
+
     def test_func(self):
         """Checks if bet owner is the same as the current user."""
         obj = self.get_object()
         return obj.bet_owner == self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["odds_preference"] = self.request.user.odds_preference
+        return context
 
 
 @require_http_methods(["DELETE"])
