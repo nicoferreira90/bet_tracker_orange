@@ -91,6 +91,16 @@ class UpdateBetView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         context["odds_preference"] = self.request.user.odds_preference
         return context
 
+    def get_initial(self):
+        initial = super().get_initial()
+        bet = self.get_object()
+
+        # Convert decimal odds to american odds if necessary
+        if self.request.user.odds_preference == "american":
+            initial["american_odds"] = Bet.decimal_to_american(bet.odds)
+
+        return initial
+
 
 @require_http_methods(["DELETE"])
 @login_required
