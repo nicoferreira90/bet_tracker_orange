@@ -20,6 +20,12 @@ class BetHistoryView(LoginRequiredMixin, ListView):
         """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
         return Bet.objects.filter(bet_owner=self.request.user).order_by("-date_added")
 
+    def get_context_data(self, **kwargs):
+        """Override the get_context_data method to pass the user's preferred odds format."""
+        context = super().get_context_data(**kwargs)
+        context["odds_preference"] = self.request.user.odds_preference
+        return context
+
 
 class NewBetView(LoginRequiredMixin, CreateView):
     model = Bet
