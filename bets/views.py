@@ -14,7 +14,6 @@ class BetHistoryView(LoginRequiredMixin, ListView):
     model = Bet
     template_name = "bets/bet_history.html"
     login_url = reverse_lazy("account_login")
-    paginate_by = 20
 
     def get_queryset(self):
         """Override the get_queryset method so that BetHistoryView only displays bets made by the current user."""
@@ -25,6 +24,16 @@ class BetHistoryView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["odds_preference"] = self.request.user.odds_preference
         return context
+
+    def get_paginate_by(self, queryset):
+        """Override the get_paginate_by method to set pagination based on the user's preference."""
+        # Retrieve the user's preferred items per page (default to 20 if not set)
+        items_per_page = self.request.user.items_per_page
+        if items_per_page == "no":
+            return None  # No pagination if 'no' is selected
+        return int(
+            items_per_page
+        )  # Convert the string value to an integer for pagination
 
 
 class NewBetView(LoginRequiredMixin, CreateView):
