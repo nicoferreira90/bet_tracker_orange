@@ -48,9 +48,11 @@ class Bet(models.Model):
     @staticmethod
     def decimal_to_american(decimal_odds):
         if decimal_odds > 2:
-            return (decimal_odds - 1) * 100
+            return round((decimal_odds - 1) * 100)  # Round the result to a whole number
         else:
-            return -100 / (decimal_odds - 1)
+            return round(
+                -100 / (decimal_odds - 1)
+            )  # Round the result to a whole number
 
     # In Django (and Python more generally), the @property decorator is a built-in feature that allows you to define methods in a class that can be accessed like attributes.
     @property
