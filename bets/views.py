@@ -23,6 +23,9 @@ class BetHistoryView(LoginRequiredMixin, ListView):
         """Override the get_context_data method to pass the user's preferred odds format."""
         context = super().get_context_data(**kwargs)
         context["odds_preference"] = self.request.user.odds_preference
+        context["table_color_preference_white"] = (
+            self.request.user.remove_color_from_tables
+        )
         return context
 
     def get_paginate_by(self, queryset):

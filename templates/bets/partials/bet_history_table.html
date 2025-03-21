@@ -19,11 +19,11 @@
     <tbody>
         {% for bet in bet_list %}
         <tr x-show="search === '' || '{{ bet.pick }}'.toLowerCase().includes(search.toLowerCase())"
-         class="{% if bet.result == 'Win' %}
+         class="{% if bet.result == 'Win' and not table_color_preference_white %}
                 table-success
-                {% elif bet.result == 'Lose' %}
+                {% elif bet.result == 'Lose' and not table_color_preference_white %}
                 table-danger
-                {% elif bet.result == 'Pending' %}
+                {% elif bet.result == 'Pending' and not table_color_preference_white %}
                 table-warning{% else %}
                 table-light{% endif %} 
                 border-dark table-bordered">
