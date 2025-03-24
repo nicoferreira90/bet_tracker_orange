@@ -10,13 +10,13 @@ services:
       - db
     environment:
       - "DJANGO_SECRET_KEY=kpUyhaYEOtFsWF9UOSyZeayZ-aPGXmccd4HDAbaMFxRBBpgi45s"
-      - "DJANGO_DEBUG=True" #
-      - "DJANGO_SECURE_SSL_REDIRECT=False" #
-      - "DJANGO_SECURE_HSTS_SECONDS=0" #
-      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False" #
-      - "DJANGO_SECURE_HSTS_PRELOAD=False" #
-      - "DJANGO_SESSION_COOKIE_SECURE=False" #
-      - "DJANGO_CSRF_COOKIE_SECURE=False" #
+      - "DJANGO_DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "DJANGO_SESSION_COOKIE_SECURE=False"
+      - "DJANGO_CSRF_COOKIE_SECURE=False"
   db:
     image: postgres:13
     volumes:
